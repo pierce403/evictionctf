@@ -1,0 +1,98 @@
+<html>
+<body>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Eviction CTF</title>
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    
+<link rel='stylesheet' href='//cdn.jsdelivr.net/font-hack/2.020/css/hack.min.css'>
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+<link rel="stylesheet" href="static/css/bootstrap4-neon-glow.min.css">
+
+<nav class="navbar navbar-expand-lg navbar-info bg-dark">
+    <div class="ml-auto" style="text-align:right">
+      logged in as <b>{{current_user.username}}</b>
+<a href="/logout" class="btn btn-dark" data-toggle="tooltip" data-placement="bottom"
+  title="" data-original-title="logout">
+  <span class="fa fa-sign-out"></span>
+</a>
+<br>
+  <div style="text-align:left">
+  red points: {{current_user.red_points}} (🔥{{current_user.heat}})<br>
+  blue points: {{current_user.blue_points}}
+  </div>
+    </div>
+</nav>
+
+<br><br>
+
+<div class="row">
+
+<div class="card w-40 border-info offset-1">
+  <div class="card-body">
+    <blockquote class="card-blockquote">
+<p>
+Hey there {{current_user.username}}
+<br><br>
+Your current IOC is <big style="font-family:monospace;">{{current_user.ioc}}</big>
+<br>ssh pi@10.10.220.42 with password <big style="font-family:monospace;">raspberry</big>
+<br>From target, score with: <big style="font-family:monospace;">curl 10.10.220.43:5000/tag?ioc={{current_user.ioc}}</big>
+<br><br>
+heat: {{current_user.heat}}
+<br>
+red points: {{current_user.red_points}}
+<br>
+blue points: {{current_user.blue_points}}
+</p>
+    </blockquote>
+
+<form class='form-inline' action='burn' method='post'>
+  <input type='text' class="form-control border-info" placeholder='burn enemy IOC' name='ioc'>
+  <button type="submit" class="btn btn-outline-info fa fa-fire"></button>
+</form>
+
+  </div>
+</div>
+
+<div class="pull-right offset-1">
+<table class="table table-hover table-striped inline w-25">
+<tr>
+<th>top_red</th>
+<th>heat</th>
+<th>red_points</th>
+</tr>
+{% for user in top_red %}
+    <tr>
+      <td>{{user.username}}</td>
+      <td>{{user.heat}}</td>
+      <td>{{user.red_points}}</td>
+    </tr>
+{% endfor %}
+</table>
+<br>
+<table class="table table-hover table-striped inline w-25">
+<tr>
+<th>top_blue</th>
+<th>blue_points</th>
+</tr>
+{% for user in top_blue %}
+    <tr>
+      <td>{{user.username}}</td>
+      <td>{{user.blue_points}}</td>
+    </tr>
+{% endfor %}
+</table>
+</div>
+
+</div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
+
+</body>
+</html>

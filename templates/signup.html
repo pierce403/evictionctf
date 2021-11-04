@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign-up</title>
+</head>
+<body>
+    <h1>Sign-up</h1><br>warning: passwords currently stored in cleartext<br>
+    <form method="POST" action="/signup">
+        {{ form.hidden_tag() }}
+        {{ form.username.label }} {{ form.username(size=20) }}
+        {{ form.password.label }} {{ form.password(size=20) }}
+        <input type="submit" value="Signup">
+    </form>
+</body>
+</html>

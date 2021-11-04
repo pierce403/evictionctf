@@ -1,0 +1,22 @@
+<html>
+<body>
+
+<table>
+<tr>
+<td>username</td>
+<td>red_points</td>
+<td>heat</td>
+<td>blue_points</td>
+</tr>
+{% for user in users %}
+    <tr>
+      <td>{{user.username}}</td>
+      <td>{{user.red_points}}</td>
+      <td>{{user.heat}}</td>
+      <td>{{user.blue_points}}</td>
+    </tr>
+{% endfor %}
+</table>
+
+</body>
+</html>
